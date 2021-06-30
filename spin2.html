@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spinning wheel</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline: none;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        overflow: hidden;
+        /* background: chocolate; */
+        background-image: url('backgroundmain.webp');
+        background-size: cover;
+    }
+    .mainbox{
+        position: absolute;
+        top: 11%;
+        width: 600px;
+        height: 600px;
+    }
+    /* .mainbox::after{
+        position: absolute;
+        content: '';
+        width: 50px;
+        height: 50px;
+        background: url('arrow-left.png');
+        background-size: 50px;
+        right: -62px;
+        top: 50%;
+        transform: translateY(-50%);
+    } */
+    .box{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 50%;
+        border: 10px solid #66e4104d;
+        overflow: hidden;
+        transition: all ease 5s;
+        background-image: url('background.jpg') ;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    span{
+        width: 50%;
+        height: 50%;
+        display: inline-block;
+        position: absolute;
+    }
+    /* .span1{
+        clip-path: polygon(0px 29%, 1% 69%, 31.15% 50.71%);
+        background-color: blue;
+        top: 160px;
+        left: -4px;
+    }
+    .span2{
+        clip-path: polygon(100% 29%, 99% 69%, 223px 48.39%);
+        background-color: rgb(195, 0, 255);
+        top: 160px;
+        right: -4px;
+    }
+    .span3{
+        clip-path: polygon(147px 39.13%, 15.09% 65.53%, 54.47% 80.53%);
+        background-color: rgb(175, 19, 66);
+        top: -72px;
+        left: 0;
+    }
+    .span4{
+        clip-path: polygon(48.76% 23.49%, 80.29% 50.77%, 146px 68.09%);
+        background-color: rgb(199, 202, 30);
+        top: -42px;
+        right: -10px;
+    }
+    .span5{
+        clip-path: polygon(79.67% 16.84%, 62.13% 58.29%, 141px 19.74%);
+        background-color: rgb(0, 247, 255);
+        top: -62px;
+        right: 249px;
+    }
+    .span6{
+        clip-path: polygon(38.47% 51.29%, 26.89% 94.19%, 3px 63.74%);
+        background-color: rgb(30, 255, 0);
+        top: 305px;
+        right: 332px;
+    }
+    .span7{
+        clip-path: polygon(100.27% 41.16%, 77.31% 76.24%, 226px 33.05%);
+        background-color: rgb(100, 99, 22);
+        top: 380px;
+        right: 51px;
+    }
+    .span8{
+        clip-path: polygon(51.75% 64.03%, 76.77% 100.27%, 135px 99.35%);
+        background-color: rgb(183, 0, 255);
+        top: -74px;
+        right: 502px;
+    }
+    .span9{
+        clip-path: polygon(77.51% 64.32%, 74.87% 101.43%, 160px 79.37%);
+        background-color: rgb(194, 52, 99);
+        top: -211px;
+        right: 390px;
+    }
+    .span10{
+        clip-path: polygon(44.70% 32.77%, 84.35% 63.2%, 152px 77.92%);
+        background-color: rgb(86, 92, 54);
+        top: 420px;
+        right: 73px;
+    }
+    .span11{
+        clip-path: polygon(35.22% 27.55%, 37.19% 75.95%, -8px 54.48%);
+        background-color: rgb(0, 204, 255);
+        top: 431px;
+        right: 227px;
+    }
+    .span12{
+        clip-path: polygon(58.52% 70.98%, 99.54% 64.08%, 326px 101.09%);
+        background-color: rgb(255, 153, 0);
+        top: 178px;
+        right: -1px;
+    }
+    .span13{
+        clip-path: polygon(101.63% 64.90%, 81.93% 96.52%, 258px 58.52%);
+         background-color: rgb(0, 255, 98);
+        top: 196px;
+        right: 627px;
+    }
+    .span14{
+        clip-path: polygon(61.5% 53.89%, 82.46% 91.87%, 134px 90.08%);
+        background-color: blue;
+        top: -55px;
+        right: -72px;
+    }
+    .span15{
+        clip-path: polygon(43.62% 56.79%, 85.17% 71.03%, 188px 101.66%);
+        background-color: rgb(73, 17, 17);
+        top: -204px;
+        right: 118px;
+    }
+    .span16{
+        clip-path: polygon(54.46% 52.74%, 77.31% 100.56%, 116px 98.48%);
+        background-color: rgb(57, 151, 123);
+        top: 348px;
+        right: 204px;
+    }/* */
+    .b1{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(255, 2, 2);
+        position: absolute;
+        top: 52%;
+        left: 31%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b2{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(2, 248, 35);
+        position: absolute;
+        top: 52%;
+        left: 69%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b3{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(8, 4, 255);
+        position: absolute;
+        top: 93%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b4{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(228, 2, 248);
+        position: absolute;
+        top: 12%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color:white;
+    }
+    .b5{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(255, 238, 2);
+        position: absolute;
+        top: 31%;
+        left: 34%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b6{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(17, 0, 255);
+        position: absolute;
+        top: 74%;
+        left: 34%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b7{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(76, 230, 247);
+        position: absolute;
+        top: 31%;
+        left: 67%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b8{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(220, 248, 95);
+        position: absolute;
+        top: 83%;
+        left: 37%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b9{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(121, 34, 116);
+        position: absolute;
+        top: 83%;
+        left: 63%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b10{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(77, 3, 3);
+        position: absolute;
+        top: 74%;
+        left: 67%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b11{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(135, 155, 25);
+        position: absolute;
+        top: 22%;
+        left: 37%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b12{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(0, 124, 196);
+        position: absolute;
+        top: 91%;
+        left: 57%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b13{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(3, 98, 206);
+        position: absolute;
+        top: 91%;
+        left: 43%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b14{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(133, 4, 90);
+        position: absolute;
+        top: 14%;
+        left: 57%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color:white;
+    }
+    .b15{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(245, 82, 204);
+        position: absolute;
+        top: 14%;
+        left: 43%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b16{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(51, 102, 240);
+        position: absolute;
+        top: 22%;
+        left: 63%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b17{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(85, 236, 55);
+        position: absolute;
+        top: 41%;
+        left: 68%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color:white;
+    } 
+    .b18{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(21, 225, 252);
+        position: absolute;
+        top: 41%;
+        left: 32%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color : white;
+    } 
+    .b19{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgb(145, 160, 91);
+        position: absolute;
+        top: 63%;
+        left: 69%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+    .b20{
+        width: 80px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        font-size: 26px;
+        text-align: center;
+        background-color: rgba(172, 1, 252, 0.692);
+        position: absolute;
+        top: 63%;
+        left: 32%;
+        transform: translate(-50%,-50%);
+        box-shadow: inset 0 3px 3px 0 black;
+        color: white;
+    }
+     
+    .spin{
+        position: absolute;
+        top: 27%;
+        left: 32%;
+        cursor: pointer;
+        transition: all ease 30s;
+    }
+    .music{
+        position: absolute;
+        top: 93%;
+        left: 93%;
+        width: 100px;
+        height: 50px;
+        border: 1px solid blue;
+        border-radius: 10px;
+        background-color: chartreuse;
+        font-size: 18px;
+    }
+    .music:hover{
+        width: 110px;
+        background-color: black;
+        color: white;
+    }
+    a{
+        position: absolute;
+        top: 90%;
+        left: 97%;
+    }
+</style>
+<body>
+    <button class="music" id="music" onclick="mymusic()">Play-Music</button>
+    <a href="splash.html">hello</a>
+    <div class="mainbox">
+        <div class="box" id="box">
+        <img id="wine" src="wine1.png" alt="wine image" class="spin" onclick="myspin()">
+        </div>
+    </div>
+    <b class="b1">Kirti</b>
+    <b class="b2">ankit</b>
+    <b class="b3">SahiR.</b>
+    <b class="b4">Suraj</b>
+    <b class="b5">Abhis.</b>
+    <b class="b6">rahul</b>
+    <b class="b7">Bhuri</b>
+    <b class="b8">pradeep.</b>
+    <b class="b9">Jai</b>
+    <b class="b10">rohit.</b>
+    <b class="b11">Amit</b>
+    <b class="b12">sita.</b>
+    <b class="b13">sunil</b>
+    <b class="b14">Rashi</b>
+    <b class="b15">Vinod</b>
+    <b class="b16">vivek</b>
+    <b class="b17">gunjan</b>
+    <b class="b18">mohit</b>
+    <b class="b19">saurabh</b>
+    <b class="b20">ravi</b>
+<script>
+    function myspin(){
+        var x=1024;
+        var y = 99999;
+        var deg = Math.floor(Math.random()*(x-y))+y;
+        document.getElementById('wine').style.transform="rotate("+deg+"deg)";
+
+    }
+    let timer = 0;
+    let playing = true;
+    var index = 0;
+    let mysongs = ['music2.mp3','music3.mp3','music4.mp3','music5.mp3'];
+    let track = document.createElement('audio');
+    function load_track(index){
+        track.src = mysongs[index];
+        track.load();
+    }
+    load_track(index);
+    function playsong(){
+        track.play();
+        playing = false;
+    }
+    function pausesong(){
+        track.pause();
+        playing = true;
+    }
+    function mymusic(){
+        if(playing){
+            playsong();
+        }
+        else{
+            pausesong();
+            index = index+1;
+            if(index==5){
+                index=0;
+            }
+            load_track(index);
+        }
+    }
+</script>
+</body>
+</html>

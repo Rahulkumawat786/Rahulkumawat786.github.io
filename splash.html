@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>truth and dare</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    section{
+        position: relative;
+        width: 100%;
+        min-height: 720px;
+        background-image: url('truth.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    section::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('splash2.png');
+        background-size: 100%;
+        background-position: center;
+        mix-blend-mode: screen;
+    }
+    a{
+        position: absolute;
+        top: 10%;
+        left: 48%;
+        color: #1f7272;
+    }
+</style>
+<body>
+    <section>
+    </section>
+    <a href="spin2.html">hello</a>
+    <audio src="music4.mp3" controls autoplay></audio>
+</body>
+</html>
